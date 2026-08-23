@@ -1,0 +1,31 @@
+name: Release fonts
+
+on:
+  push:
+    branches: [main]
+    paths: ["Fonts/**", "manifest.json", "tools/**", ".github/workflows/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build release manifest
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 tools/build-manifest.py
+      - name: Validate release manifest
+        run: python3 tools/validate-manifest.py
+      - name: Replace latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mapfile -t assets < <(find Fonts -maxdepth 1 -type f \( -iname '*.ttf' -o -iname '*.otf' \) -print | sort)
+          gh release delete latest --yes --cleanup-tag 2>/dev/null || true
+          gh release create latest "${assets[@]}" manifest.json Fonts/OFL.txt \
+            --title "Latest fonts" \
+            --notes "Automatically published from main."

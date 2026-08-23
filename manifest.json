@@ -1,4 +1,19 @@
 {
-  "version": "1",
-  "fonts": []
+  "version": "latest",
+  "fonts": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "version": "latest",
+      "license": "OFL-1.1",
+      "attribution": "Copyright (c) 2011-2014, Sorkin Type Co (www.sorkintype.com), with Reserved Font Name 'Basic'. Licensed under the SIL Open Font License 1.1.",
+      "postScriptName": "Basic-Regular",
+      "asset": {
+        "path": "Fonts/Basic-Regular.ttf",
+        "url": "https://github.com/anti-ltd/clink-fonts/releases/download/latest/Basic-Regular.ttf",
+        "sha256": "077f7245f6459045495b1ca0493f2b426c421d2112d10b48a38ff8858a07397a",
+        "byteCount": 58520
+      }
+    }
+  ]
 }
