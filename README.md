@@ -59,6 +59,16 @@ your-name/my-clink-fonts
 
 Then open **Customize → Look**, go to the theme editor's **Typography** section, and install a font from the repository. The font becomes available to custom themes after Clink verifies and registers it. Fonts are data-only, but only add repositories whose licensing and release contents you trust.
 
+## Add a font with an AI agent
+
+[`PROMPT.md`](PROMPT.md) is a ready-to-use brief for an AI coding agent. Fork the repository, open the fork in your agent, and say:
+
+```text
+Read PROMPT.md and add [font name] with its [licence] licence information.
+```
+
+The prompt tells the agent to verify redistribution rights, inspect the embedded PostScript name, and regenerate the manifest rather than guessing or hand-editing hashes. You must still confirm the font's licence and attribution yourself before publishing.
+
 ## What Clink verifies
 
 Clink accepts only public HTTPS GitHub release manifests. Every font must use an approved redistributable licence, be an `.otf` or `.ttf` file within the size limit, and match the manifest's byte count and SHA-256 hash. Clink also reads the binary's font descriptors and requires the declared PostScript name to be present before installation.
